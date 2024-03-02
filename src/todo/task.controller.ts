@@ -16,13 +16,17 @@ export class TaskController {
 	getTaskByID(@Param('taskID') id: number) {
 		let task = this.taskService.findTaskByID(id);
 		if (!task) {
-			throw new NotFoundException(`Task with ID ${id} not found.`)
+			throw new NotFoundException(`Task with ID ${id} not found.`);
 		}
 		return task;
 	}
 
 	@Delete(':taskID')
 	deleteTaskByID(@Param('taskID') id: number) {
-		return this.taskService.deleteTaskByID(id);
+		const response = this.taskService.deleteTaskByID(id);
+		if (!response) {
+			throw new NotFoundException(`Task with ID ${id} not found.`);
+		}
+		return 'Task successfully deleted.';
 	}
 }
