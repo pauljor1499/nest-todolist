@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { TaskModel } from './task.model';
@@ -15,7 +14,7 @@ export class TaskController {
 
 	@Get(':taskID')
 	getTaskByID(@Param('taskID') id: number) {
-		let task = this.taskService._searchTaskByID(id);
+		const task = this.taskService._searchTaskByID(id);
 		if (!task) {
 			throw new NotFoundException(`Task with ID ${id} not found.`);
 		}
