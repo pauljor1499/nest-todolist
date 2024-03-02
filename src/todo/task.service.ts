@@ -5,13 +5,13 @@ import { TaskModel } from './task.model';
 export class TaskService {
 	_tasks: TaskModel[] = [
 		{
-			id: 0, description: 'Feed the cat'
+			id: 0, description: 'Feed the cat', isComplete: false
 		},
 		{
-			id: 1, description: 'Feed the dog'
+			id: 1, description: 'Feed the dog', isComplete: false
 		},
 		{
-			id: 2, description: 'Feed the chicken'
+			id: 2, description: 'Feed the chicken', isComplete: false
 		},
 	]
 
@@ -31,10 +31,10 @@ export class TaskService {
 		}
 	}
 
-	updateTaskByID(id: number, updatedTask: TaskModel): TaskModel {
+	updateTaskDescriptionByID(id: number, task: any): TaskModel {
 		const index = this._tasks.findIndex((task) => task.id == id);
 		if (index !== -1) {
-			this._tasks.splice(index, 1, updatedTask)
+			this._tasks[index].description = task.description;
 			return this._tasks[index];
 		}
 	}
