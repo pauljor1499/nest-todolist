@@ -10,12 +10,12 @@ export class TaskController {
 
 	@Get()
 	getTasks() {
-		return this.taskService.findAllTasks();
+		return this.taskService._fetchAllTasks();
 	}
 
 	@Get(':taskID')
 	getTaskByID(@Param('taskID') id: number) {
-		let task = this.taskService.findTaskByID(id);
+		let task = this.taskService._searchTaskByID(id);
 		if (!task) {
 			throw new NotFoundException(`Task with ID ${id} not found.`);
 		}
@@ -24,7 +24,7 @@ export class TaskController {
 
 	@Delete(':taskID')
 	deleteTaskByID(@Param('taskID') id: number) {
-		const response = this.taskService.deleteTaskByID(id);
+		const response = this.taskService._deleteTaskByID(id);
 		if (!response) {
 			throw new NotFoundException(`Task with ID ${id} not found.`);
 		}
@@ -33,7 +33,7 @@ export class TaskController {
 
 	@Patch(':taskID')
 	updateTaskDescriptionByID(@Param('taskID') id: number, @Body() task: any) {
-		const response = this.taskService.updateTaskDescriptionByID(id, task);
+		const response = this.taskService._updateTaskDescriptionByID(id, task);
 		if (!response) {
 			throw new NotFoundException(`Task with ID ${id} not found.`);
 		}

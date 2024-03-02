@@ -15,15 +15,15 @@ export class TaskService {
 		},
 	]
 
-	findAllTasks(): TaskModel[] {
+	_fetchAllTasks(): TaskModel[] {
 		return this._tasks;
 	}
 
-	findTaskByID(id: number): TaskModel {
+	_searchTaskByID(id: number): TaskModel {
 		return this._tasks.find(task => task.id == id);
 	}
 
-	deleteTaskByID(id: number): boolean {
+	_deleteTaskByID(id: number): boolean {
 		const index = this._tasks.findIndex((task) => task.id == id);
 		if (index !== -1) {
 			this._tasks.splice(index, 1)
@@ -31,7 +31,7 @@ export class TaskService {
 		}
 	}
 
-	updateTaskDescriptionByID(id: number, task: any): TaskModel {
+	_updateTaskDescriptionByID(id: number, task: any): TaskModel {
 		const index = this._tasks.findIndex((task) => task.id == id);
 		if (index !== -1) {
 			this._tasks[index].description = task.description;
