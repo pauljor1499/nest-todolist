@@ -31,10 +31,10 @@ export class TaskService {
 		}
 	}
 
-	_updateTaskDescriptionByID(id: number, task: any): TaskModel {
+	_updateTaskByID(id: number, updatedTask: TaskModel): TaskModel {
 		const index = this._tasks.findIndex((task) => task.id == id);
 		if (index !== -1) {
-			this._tasks[index].description = task.description;
+			this._tasks.splice(index, 1, updatedTask)
 			return this._tasks[index];
 		}
 	}

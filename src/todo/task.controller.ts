@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, } from '@nestjs/common';
 import { TaskService } from './task.service';
-// import { TaskModel } from './task.model';
+import { TaskModel } from './task.model';
 
 @Controller('tasks')
 export class TaskController {
@@ -32,8 +32,8 @@ export class TaskController {
 	}
 
 	@Patch(':taskID')
-	updateTaskDescriptionByID(@Param('taskID') id: number, @Body() task: any) {
-		const response = this.taskService._updateTaskDescriptionByID(id, task);
+	updateTaskDescriptionByID(@Param('taskID') id: number, @Body() updatedTask: TaskModel) {
+		const response = this.taskService._updateTaskByID(id, updatedTask);
 		if (!response) {
 			throw new NotFoundException(`Task with ID ${id} not found.`);
 		}
