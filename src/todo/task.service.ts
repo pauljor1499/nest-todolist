@@ -5,18 +5,23 @@ import { TaskModel } from './task.model';
 export class TaskService {
 	_tasks: TaskModel[] = [
 		{
-			id: 0, description: 'Feed the cat', isComplete: false
+			id: 0, name: 'Feed the cat', isCompleted: false
 		},
 		{
-			id: 1, description: 'Feed the dog', isComplete: false
+			id: 1, name: 'Feed the dog', isCompleted: false
 		},
 		{
-			id: 2, description: 'Feed the chicken', isComplete: false
+			id: 2, name: 'Feed the chicken', isCompleted: false
 		},
 	]
 
 	_fetchAllTasks(): TaskModel[] {
 		return this._tasks;
+	}
+
+	_createNewTask(newTask: TaskModel): boolean {
+		this._tasks.push(newTask);
+		return true;
 	}
 
 	_searchTaskByID(id: number): TaskModel {
