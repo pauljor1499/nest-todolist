@@ -41,10 +41,10 @@ export class TaskController {
 	}
 
 	@Patch(':taskID')
-	updateTaskDescriptionByID(@Param('taskID') id: number, @Body() updatedTask: TaskModel) {
+	updateTaskByID(@Param('taskID') id: number, @Body() updatedTask: TaskModel) {
 		const response = this.taskService._updateTaskByID(id, updatedTask);
 		if (response) {
-			return response;
+			return 'Task successfully updated.';
 		}
 		throw new NotFoundException(`Task with ID ${id} not found.`);
 
