@@ -1,5 +1,5 @@
 /* eslint-disable prefer-const */
-import { Controller, Get, NotFoundException, Param, } from '@nestjs/common';
+import { Controller, Delete, Get, NotFoundException, Param, } from '@nestjs/common';
 import { TaskService } from './task.service';
 
 @Controller('tasks')
@@ -19,5 +19,10 @@ export class TaskController {
 			throw new NotFoundException(`Task with ID ${id} not found.`)
 		}
 		return task;
+	}
+
+	@Delete(':taskID')
+	deleteTaskByID(@Param('taskID') id: number) {
+		return this.taskService.deleteTaskByID(id);
 	}
 }

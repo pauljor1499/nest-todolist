@@ -22,4 +22,12 @@ export class TaskService {
 	findTaskByID(id: number): TaskModel {
 		return this._tasks.find(task => task.id == id);
 	}
+
+	deleteTaskByID(id: number): string {
+		const index = this._tasks.findIndex((task) => task.id == id);
+		if (index !== -1) {
+			this._tasks.splice(index, 1)
+		}
+		return 'Task successfully deleted.';
+	}
 }
